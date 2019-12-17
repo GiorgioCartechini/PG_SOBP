@@ -61,7 +61,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
         
    G4int parent = step ->GetTrack() ->GetParentID();
    
-   if(CurrentParticle == "proton" && pos.getX()/mm >= 0. && parent == 0)
+   if(CurrentParticle == "proton" && pos.getX()/mm >= 100. && pos.getX()/mm <= 150.)
    {
      G4double Ekin = step -> GetPostStepPoint() -> GetKineticEnergy();
      analysis -> FillProton(Ekin/MeV, pos.getX()/mm);

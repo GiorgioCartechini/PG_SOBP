@@ -68,15 +68,20 @@ StackingAction::ClassifyNewTrack(const G4Track* track)
 	 
 	 */
 	
+	
+	/*if(track->GetDynamicParticle() ->GetPDGcode()!=2212 && (track -> GetPosition()).getX() < -10.) //if the particle is not proton and it is produced before -1cm
+	{
+		return fKill; //I kill all particles (not protons) before the WP
+	}*/
 
-        if (track->GetDynamicParticle() ->GetPDGcode()==22)
-	  {
+    if (track->GetDynamicParticle() ->GetPDGcode()==22)
+	{
 		G4ThreeVector vertex_pos = track -> GetPosition();
 		if(vertex_pos.getX() >= 0 && vertex_pos.getX() < 300)
 		{
-		  G4ThreeVector vertex_direction = track -> GetMomentumDirection();
-		  G4double vertex_energy = track -> GetKineticEnergy();
-		  analysis -> FillVertex(vertex_energy/MeV, vertex_pos.getX()/mm, vertex_pos.getY()/mm, vertex_pos.getZ()/mm, vertex_direction.getX(), vertex_direction.getY(), vertex_direction.getZ(),0.,0.);
+			G4ThreeVector vertex_direction = track -> GetMomentumDirection();
+			G4double vertex_energy = track -> GetKineticEnergy();
+			analysis -> FillVertex(vertex_energy/MeV, vertex_pos.getX()/mm, vertex_pos.getY()/mm, vertex_pos.getZ()/mm, vertex_direction.getX(), vertex_direction.getY(), vertex_direction.getZ(),0.,0.);
 		}
 	}
         
